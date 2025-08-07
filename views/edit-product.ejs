@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+        input[type="text"]:focus {
+            border: 2px solid #6a11cb;
+            outline: none;
+        }
+        input[type="submit"] {
+            background: #ff6600;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        input[type="submit"]:hover {
+            background: #e65c00;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Edit Product</h2>
+        <form method="post" action="/edit4/<%= mydata4._id %>">
+            <label>Product_Id:</label>
+            <input type="text" name="txt13" value="<%= mydata4.product_id %>" required />
+
+            <label>Product_Title:</label>
+            <input type="text" name="txt14" value="<%= mydata4.product_title %>" required />
+
+            <label>Product_Details:</label>
+            <input type="text" name="txt15" value="<%= mydata4.product_details %>" required />
+
+            <label>Product_Price:</label>
+            <input type="text" name="txt16" value="<%= mydata4.product_price %>" required />
+
+            <label>Product_Image_Path:</label>
+            <input type="file" name="txt17" value="<%= mydata4.product_image_path %>" required />
+
+            <label>Category_Id:</label>
+             <select name="txt18" value="<%= mydata4.category_id %>" required>
+                <option value="Apple">Apple</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Vivo">Vivo</option>
+                <option value="Oppo">Oppo</option>
+                <option value="IQOO">IQOO</option>
+                <option value="Goggle">Goggle</option>
+                <option value="Realme">Realme</option>
+                <option value="Nothing">Nothing</option>
+             </select>
+
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+</body>
+</html>

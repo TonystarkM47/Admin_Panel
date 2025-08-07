@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Glance Design Dashboard | Tables</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href='css/SidebarNav.min.css' media='all' rel='stylesheet' type='text/css'/>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<script src="js/metisMenu.min.js"></script>
+<script src="js/custom.js"></script>
+<link href="css/custom.css" rel="stylesheet">
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    tr:hover {
+        background-color: #ddd;
+    }
+    img {
+        width: 80px;
+        height: auto;
+        border-radius: 5px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 8px 12px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        transition: background 0.3s ease;
+    }
+    .btn-edit {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .btn-edit:hover {
+        background-color: #45a049;
+    }
+    .btn-delete {
+        background-color: #f44336;
+        color: white;
+        margin-left: 5px;
+    }
+    .btn-delete:hover {
+        background-color: #d32f2f;
+    }
+</style>
+</head> 
+<body class="cbp-spmenu-push">
+  <div class="main-content">
+    <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+      <%- include('sidebar') %>
+    </div>
+    <%- include('headermenu') %>
+    <div id="page-wrapper">
+      <div class="main-page">
+        <div class="tables">
+          <h2 class="title1">Product List</h2>
+          <div class="panel-body widget-shadow">
+            <h4>Product Table:</h4>
+            <%= mydata4.length %> Records Found
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Details</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>CG_ID</th>
+                    <th>Action</th>
+                </tr>
+                <% for(var i=0; i<mydata4.length;i++){ %>
+                    <tr>
+                        <td><%= i+1 %></td>
+                        <td><%= mydata4[i].product_title %></td>
+                        <td><%= mydata4[i].product_details %></td>
+                        <td><%= mydata4[i].product_price %></td>
+                        <td>
+                          <img src="<%= mydata4.product_image_path %>" alt="Product Image">
+
+                        </td>
+                        <td><%= mydata4[i].category_id %></td>
+                        <td>
+                            <a href="/edit4/<%= mydata4[i]._id %>" class="btn btn-edit">Edit</a>
+                            <a href="/delete4/<%= mydata4[i]._id %>" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete')">Delete</a>
+                        </td>
+                    </tr>
+                <% } %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('footer') %>
+  </div>
+  <script src='js/SidebarNav.min.js'></script>
+  <script>
+    $('.sidebar-menu').SidebarNav();
+  </script>
+  <script src="js/classie.js"></script>
+  <script>
+    var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+      showLeftPush = document.getElementById( 'showLeftPush' ),
+      body = document.body;
+    showLeftPush.onclick = function() {
+      classie.toggle( this, 'active' );
+      classie.toggle( body, 'cbp-spmenu-push-toright' );
+      classie.toggle( menuLeft, 'cbp-spmenu-open' );
+      disableOther( 'showLeftPush' );
+    };
+    function disableOther( button ) {
+      if( button !== 'showLeftPush' ) {
+        classie.toggle( showLeftPush, 'disabled' );
+      }
+    }
+  </script>
+  <script src="js/jquery.nicescroll.js"></script>
+  <script src="js/scripts.js"></script>
+  <script src="js/bootstrap.js"></script>
+</body>
+</html>
